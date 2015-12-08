@@ -8,7 +8,6 @@ library(pitchRx)
 
 # Load data from over HTTP, by scraping HTML using the pitchRX library
 dat <- pitchRx::scrape(start = "2015-05-21", end = "2015-05-21")
-View(dat)
 
 # Massage the data using dplyr
 locations <- dplyr::select(dat$pitch, pitch_type, start_speed, px, pz, des, num, gameday_link)
@@ -17,10 +16,10 @@ View(locations)
 names <- dplyr::select(dat$atbat, pitcher, batter, pitcher_name, batter_name, num, gameday_link, event, stand)
 View(names)
 
+# Now filter for pitches by Jacob DeGrom  
 data <- names %>% filter(pitcher_name == "Jacob DeGrom") %>% inner_join(locations, ., by = c("num", "gameday_link"))
 View(data)
 
-# Plot Jacob deGrom's swinging strikes from 5/21/15
 # subset the data, keeping all rows but only columns number 1 through 5 and 13
 deGrom <- data[, c(1:5, 13)]
 View(deGrom)

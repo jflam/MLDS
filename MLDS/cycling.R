@@ -3,7 +3,7 @@ install.packages("XML")
 library(XML)
 library(ggplot2)
 
-doc <- xmlParse("Morning Ride.tcx")
+doc <- xmlParse() # TODO: specify file
 data <- xmlToDataFrame(nodes <- getNodeSet(doc, "//ns:Trackpoint", "ns"))
 
 # Inspect the data
